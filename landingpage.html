@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Coffee House</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f5f0;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(45, 16, 13, 0.96);
+            padding: 15px 0;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            background: #fff3d8;
+            color: #482016;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            font-size: 27px;
+        }
+
+        .navbar .nav-link {
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 0 10px;
+        }
+
+        .navbar .nav-link:hover {
+            color: #e7b878;
+        }
+
+        .order-btn {
+            border: 2px solid #f3d8bd;
+            color: white;
+            border-radius: 30px;
+            padding: 10px 22px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .order-btn:hover {
+            background: #e5a75b;
+            color: #35150e;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 460px;
+            padding: 65px 0 85px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(74, 27, 17, 0.96),
+                    rgba(111, 48, 26, 0.90),
+                    rgba(56, 22, 15, 0.93)
+                ),
+                url("https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .welcome {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            color: #f2d4a5;
+        }
+
+        .hero h1 {
+            font-size: 43px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin: 20px 0;
+        }
+
+        .hero p {
+            font-size: 14px;
+            line-height: 1.9;
+            color: #f6e9df;
+        }
+
+        .explore-btn {
+            display: inline-block;
+            background: #d9923b;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            padding: 13px 25px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        .explore-btn:hover {
+            background: #f0b568;
+            color: #35150e;
+            transform: translateY(-2px);
+        }
+
+        .fresh-text {
+            font-size: 11px !important;
+            margin-top: 12px;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 35px;
+        }
+
+        /* Popular Coffee */
+        .popular {
+            padding: 55px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 27px;
+            font-weight: 700;
+            color: #48251b;
+            margin-bottom: 12px;
+        }
+
+        .section-desc {
+            text-align: center;
+            color: #777;
+            margin-bottom: 35px;
+            font-size: 14px;
+        }
+
+        .coffee-card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: 0 5px 20px rgba(60, 30, 15, 0.10);
+            transition: 0.3s;
+        }
+
+        .coffee-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .coffee-card img {
+            height: 210px;
+            object-fit: cover;
+        }
+
+        .coffee-card h5 {
+            font-weight: 700;
+            color: #48251b;
+        }
+
+        .coffee-card p {
+            font-size: 13px;
+            color: #777;
+        }
+
+        .price {
+            color: #a65e24;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .coffee-btn {
+            background: #6a301e;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 9px 18px;
+            font-size: 12px;
+        }
+
+        .coffee-btn:hover {
+            background: #a65e24;
+            color: white;
+        }
+
+        /* About Section */
+        .about {
+            background: #eadbcb;
+            padding: 55px 0;
+            text-align: center;
+        }
+
+        .about p {
+            color: #65483a;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d100d;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        /* Cookie Bar */
+        .cookie-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.97);
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
+            z-index: 9999;
+        }
+
+        .cookie-bar p {
+            color: #555;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .cookie-bar a {
+            color: #79513b;
+            text-decoration: none;
+        }
+
+        .accept-btn {
+            background: #8b4b1f;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 8px;
+        }
+
+        .reject-btn {
+            background: #111;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 45px 0;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero-img {
+                margin-top: 30px;
+                height: 230px;
+            }
+
+            .welcome {
+                letter-spacing: 2px;
+            }
+
+            .section-title {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+
+            <a class="navbar-brand" href="#home">
+                <div class="logo">
+                    <span>☕</span>
+                    COFFEE
+                </div>
+            </a>
+
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarMenu"
+                    aria-controls="navbarMenu"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMenu">
+
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">HOME</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu">MENU</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">ABOUT US</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#blog">BLOG</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">CONTACT</a>
+                    </li>
+
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <a class="btn order-btn" href="#menu">
+                            ORDER NOW
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-lg-6">
+
+                    <span class="welcome">
+                        WELCOME TO COFFEE HOUSE
+                    </span>
+
+                    <h1>
+                        Fresh Coffee, Happy<br>
+                        Moments
+                    </h1>
+
+                    <p>
+                        Enjoy delicious coffee made with carefully selected
+                        beans. Discover rich flavors, warm moments, and your
+                        favorite coffee drinks.
+                    </p>
+
+                    <a href="#menu" class="explore-btn">
+                        EXPLORE MENU →
+                    </a>
+
+                    <p class="fresh-text">
+                        Freshly brewed for you every day!
+                    </p>
+
+                </div>
+
+                <div class="col-lg-6">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1200&q=85"
+                        alt="Coffee shop and freshly prepared coffee"
+                        class="hero-img">
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Coffee -->
+    <section class="popular" id="menu">
+        <div class="container">
+
+            <h2 class="section-title">
+                OUR POPULAR COFFEE
+            </h2>
+
+            <p class="section-desc">
+                Discover your favorite coffee and enjoy every sip.
+            </p>
+
+            <div class="row g-4">
+
+                <!-- Coffee 1 -->
+                <div class="col-md-4">
+                    <div class="card coffee-card">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=80"
+                            class="card-img-top"
+                            alt="Cappuccino coffee">
+
+                        <div class="card-body">
+                            <h5>Cappuccino</h5>
+
+                            <p>
+                                Rich espresso with steamed milk and
+                                a smooth layer of creamy foam.
+                            </p>
+
+                            <div class="d-flex justify-content-between
+                                        align-items-center">
+                                <span class="price">₹120</span>
+
+                                <button class="btn coffee-btn"
+                                        onclick="orderCoffee('Cappuccino')">
+                                    Order Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coffee 2 -->
+                <div class="col-md-4">
+                    <div class="card coffee-card">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=800&q=80"
+                            class="card-img-top"
+                            alt="Latte coffee">
+
+                        <div class="card-body">
+                            <h5>Latte</h5>
+
+                            <p>
+                                A delicious combination of espresso
+                                and silky steamed milk.
+                            </p>
+
+                            <div class="d-flex justify-content-between
+                                        align-items-center">
+                                <span class="price">₹140</span>
+
+                                <button class="btn coffee-btn"
+                                        onclick="orderCoffee('Latte')">
+                                    Order Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coffee 3 -->
+                <div class="col-md-4">
+                    <div class="card coffee-card">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=800&q=80"
+                            class="card-img-top"
+                            alt="Black coffee">
+
+                        <div class="card-body">
+                            <h5>Black Coffee</h5>
+
+                            <p>
+                                Bold, aromatic coffee with a rich
+                                flavor for true coffee lovers.
+                            </p>
+
+                            <div class="d-flex justify-content-between
+                                        align-items-center">
+                                <span class="price">₹90</span>
+
+                                <button class="btn coffee-btn"
+                                        onclick="orderCoffee('Black Coffee')">
+                                    Order Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us -->
+    <section class="about" id="about">
+        <div class="container">
+
+            <h2 class="section-title">
+                ABOUT OUR COFFEE HOUSE
+            </h2>
+
+            <p>
+                We serve freshly brewed coffee made with carefully
+                selected beans, passion, and love.
+            </p>
+
+        </div>
+    </section>
+
+    <!-- Blog -->
+    <section class="popular" id="blog">
+        <div class="container text-center">
+
+            <h2 class="section-title">
+                OUR COFFEE STORIES
+            </h2>
+
+            <p class="section-desc">
+                Every cup tells a story. Make yours special.
+            </p>
+
+        </div>
+    </section>
+
+    <!-- Contact Footer -->
+    <footer id="contact">
+        <h5>☕ COFFEE HOUSE</h5>
+
+        <p>Fresh Coffee, Happy Moments</p>
+
+        <p class="mt-2">
+            &copy; 2026 Coffee House. All rights reserved.
+        </p>
+    </footer>
+
+    <!-- Cookie Consent -->
+    <div class="cookie-bar" id="cookieBar">
+
+        <p>
+            We use cookies to improve your experience.
+            <a href="#about">Cookie settings</a>
+        </p>
+
+        <button class="accept-btn" onclick="closeCookieBar()">
+            Accept
+        </button>
+
+        <button class="reject-btn" onclick="closeCookieBar()">
+            Reject
+        </button>
+
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function closeCookieBar() {
+            document.getElementById("cookieBar").style.display = "none";
+        }
+
+        function orderCoffee(coffeeName) {
+            alert("You selected " + coffeeName + "!");
+        }
+    </script>
+
+</body>
+</html>
